@@ -46,10 +46,7 @@ pipeline {
                 }
             }
     post {
-        always {
-            // Archive logs as artifacts
-            archiveArtifacts artifacts: '**/logs/*', allowEmptyArchive: true
-        }
+       
         failure {
             script {
                 echo "Sending notification email about failure..."
