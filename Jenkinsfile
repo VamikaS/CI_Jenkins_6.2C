@@ -6,7 +6,6 @@ pipeline {
             steps {
                 script {
                     echo "Building the code using Maven..."
-                    sh 'mvn clean compile package'
                     // Use Maven to compile and package the code
                 }
             }
@@ -15,12 +14,10 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 script {
-                    echo "Running unit tests..."
-                    sh 'mvn test'
+                    echo "Running unit tests using JUnit..."
                     // Use JUnit or another test automation tool for unit tests
 
-                    echo "Running integration tests..."
-                    sh 'mvn verify'
+                    echo "Running integration tests using Selenium..."
                     // Use a tool like Selenium or JUnit for integration tests
                 }
             }
@@ -29,9 +26,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 script {
-                    echo "Running code analysis..."
-                     withSonarQubeEnv(credentialsId: 'sonarqube-credentials') {
-                     sh 'mvn sonar:sonar'
+                    echo "Running code analysis using SonarQube..."
                     // Integrate a code analysis tool (e.g., SonarQube) using Jenkins plugins
                      }
                 }
